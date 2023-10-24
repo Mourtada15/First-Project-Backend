@@ -28,7 +28,6 @@ const registerAdmin=  async (req,res)=>{
     }
 }
 
-
 module.exports={
     getAdmins, registerAdmin
 }
