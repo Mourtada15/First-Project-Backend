@@ -1,17 +1,15 @@
 const express = require('express')
-
 const router = express.Router()
+
+const {getAdmins,registerAdmin}=require('../controllers/adminControllers')
+
 
 
 //register an admin
-router.post('/register',(req,res)=>{
-    res.json({msg:'Add Admin'})
-})
-//get admin by id
-router.get('/:id',(req,res)=>{
-    res.json({msg:'Get Admin'})
-})
+router.post('/register', registerAdmin)
 
 
+//get admins
+router.get('/',getAdmins)
 
 module.exports=router
