@@ -10,6 +10,7 @@ const getAboutUsContent= async(req,res)=>{
     res.status(200).json(aboutUs)
 }
 
+//git pull
 
 const updateAboutUsContent= async(req,res)=>{
     const aboutUs=await AboutUs.findOneAndUpdate({}, req.body
