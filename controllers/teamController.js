@@ -75,9 +75,6 @@ const updateTeamMember = async (req, res) => {
     res.status(200).json(teamMember)
 }
 
-
-
-
 module.exports = {
     getTeamMembers,
     getTeamMember,

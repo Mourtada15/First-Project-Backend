@@ -2,19 +2,23 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const teamSchema = new Schema({
+const AboutUsSchema = new Schema({
     image: {
         type: String,
         required: true
     },
-    name: {
+    ourStory: {
         type: String,
         required: true
     },
-    title: {
+    vision: {
+        type: String,
+        required: true
+    },
+    mission: {
         type: String,
         required: true
     }
-}, { timestamps: true })
+})
 
-module.exports = mongoose.model('Team', teamSchema)
+module.exports = mongoose.model('AboutUs', AboutUsSchema)

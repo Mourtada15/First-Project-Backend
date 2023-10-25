@@ -1,4 +1,3 @@
-const { Timestamp } = require('mongodb')
 const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
@@ -14,6 +13,15 @@ const articleSchema = new Schema({
     },
     image: {
         type: String,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    },
+    admin: {
+        type: Schema.Types.ObjectId,
+        ref: 'Admin',
         required: true
     }
 }, { timestamps: true })

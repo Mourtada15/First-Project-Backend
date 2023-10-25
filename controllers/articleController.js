@@ -28,11 +28,11 @@ const getArticle = async (req, res) => {
 
 // create new article
 const createArticle = async (req, res) => {
-    const {title, body, image} = req.body
+    const {title, body, image, date, admin: adminId} = req.body
 
     // add doc to db
     try {
-        const article = await Article.create({title, body, image})
+        const article = await Article.create({title, body, image, date, admin: adminId})
         res.status(200).json(article)
     } catch (error) {
         res.status(400).json({error: error.message})
