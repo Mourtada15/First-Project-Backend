@@ -15,7 +15,7 @@ const getAboutUsContent= async(req,res)=>{
 const updateAboutUsContent= async(req,res)=>{
     const aboutUs=await AboutUs.findOneAndUpdate({}, req.body
     )
-...
+
     if (!aboutUs) {
         return res.status(404).json({error: 'No content'})
     }
