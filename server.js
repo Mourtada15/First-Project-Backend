@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 //Import routes
 const adminRoutes=require('./routes/admin')
 const articleRoute =require('./routes/article')
+const aboutUsRoute=require('./routes/aboutus')
 //express app
 const app = express()
 
@@ -27,6 +28,7 @@ app.use((req,res,next)=>{
 //routes
 app.use(process.env.ADMIN_PATH,adminRoutes)
 app.use('/api/article',articleRoute)
+app.use('/api/about-us', aboutUsRoute)
 
 
 //connect to db
