@@ -8,6 +8,7 @@ const mongoose = require('mongoose')
 const adminRoutes=require('./routes/admin')
 const articleRoute =require('./routes/article')
 const aboutUsRoute=require('./routes/aboutus')
+const milestoneRoute= require('./routes/milestone')
 //express app
 const app = express()
 
@@ -29,6 +30,7 @@ app.use((req,res,next)=>{
 app.use(process.env.ADMIN_PATH,adminRoutes)
 app.use('/api/article',articleRoute)
 app.use('/api/about-us', aboutUsRoute)
+app.use('/api/milestone', milestoneRoute)
 
 
 //connect to db
