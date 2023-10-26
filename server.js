@@ -9,6 +9,7 @@ const adminRoutes=require('./routes/admin')
 const articleRoute =require('./routes/article')
 const aboutUsRoute=require('./routes/aboutus')
 const milestoneRoute= require('./routes/milestone')
+const contactusRoute = require('./routes/contactus')
 //express app
 const app = express()
 
@@ -31,6 +32,7 @@ app.use(process.env.ADMIN_PATH,adminRoutes)
 app.use('/api/article',articleRoute)
 app.use('/api/about-us', aboutUsRoute)
 app.use('/api/milestone', milestoneRoute)
+app.use('/api/contact-us', contactusRoute)
 
 
 //connect to db
