@@ -48,9 +48,7 @@ const app = express()
 //middleware
 // app.use(bodyParser.urlencoded({extended:false}))//parse form data
 app.use(express.json())//parsing json data
-// app.use(multer({storage:storage,fileFilter:fileFilter}).single('image'));//parsing files
-// app.use(express.static('images'));//specify where express should looks for static files
-
+// app.use(multer({storage:storage,fileFilter:fileFilter}).single('image'));//pa
 app.use((req,res,next)=>{
     console.log(req.path, req.method)
     next()
@@ -67,15 +65,16 @@ app.use('/api/lebneneEle', lebEleRoute);
 app.use('/api/team', teamRoutes)
 
 
-
-
-//connect to db
+// connect to db
 mongoose.connect(process.env.MONGO_URI)
-.then(()=>{//listen for requests
-    app.listen(process.env.PORT,()=>{
-        console.log(`Starting server at port ${process.env.PORT}`);
-    })})
-.catch((error)=>{
-    console.log(error);
-    process.exit();
-})
+    .then(() => {
+        // listen for requests
+        app.listen(process.env.PORT, () => {
+            console.log('connected to db & listening on port', process.env.PORT)
+        })
+    })
+    .catch((error) => {
+        console.log(error)
+        process.exit();
+    })
+

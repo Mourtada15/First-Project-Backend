@@ -1,6 +1,6 @@
 import express from 'express';
 
-import * as teamsController from "../controllers/teamsControllers";
+import * as teamsController from "../controllers/teamControllers.js";
 
 const router = express.Router()
 
@@ -19,4 +19,4 @@ router.delete('/:id', teamsController.deleteTeamMember)
 // UPDATE a teamMember
 router.patch('/:id', teamsController.updateTeamMember)
 
-module.exports = router
+export default router
