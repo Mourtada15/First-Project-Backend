@@ -49,7 +49,7 @@ const upload= multer({storage:storage,fileFilter:fileFilter});
 //middleware
 // app.use(bodyParser.urlencoded({extended:false}))//parse form data
 app.use(express.json())//parsing json data
-app.use(multer({storage:storage,fileFilter:fileFilter}).single('image'));//parsing files
+app.use(upload.single('image'));//parsing files
 app.use(express.static('images'));//specify where express should looks for static files
 
 app.use((req,res,next)=>{
