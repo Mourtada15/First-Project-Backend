@@ -19,10 +19,20 @@ const getTeamMember = async (req, res) => {
     const teamMember = await Team.findById(id)
 
     if (!teamMember) {
-        return res.status(404).json({error: 'Team member not found'})
+        return res.status(404).json({
+            status: 400,
+            message: `error ${error.message}`,
+            data: null
+        })
     }
 
-    res.status(200).json(teamMember)
+    // res.status(200).json(teamMember)
+    res.status(200).json({
+        status: 200,
+        message: "successfully returned",
+        data: teamMember
+    })
+
 }
 
 
