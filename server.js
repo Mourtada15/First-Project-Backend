@@ -2,7 +2,7 @@
 import  express  from 'express'
 import mongoose from 'mongoose'
 import bodyParser from "body-parser"
-// import multer from 'multer'
+import multer from 'multer'
 import dotenv from "dotenv"
 import path from "path"
 dotenv.config();
@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
         cb(null,'images');
     },
     filename:(req,file,cb) =>{
-        cb(null, `${file.fieldname}-${Date.now()}`);
+        cb(null, `${file.originalname}`);
     }
 });
 
@@ -48,7 +48,7 @@ const upload= multer({storage:storage,fileFilter:fileFilter});
 
 
 //middleware
-// app.use(bodyParser.urlencoded({extended:false}))//parse form data
+app.use(bodyParser.urlencoded({extended:false}))//parse form data
 app.use(express.json())//parsing json data
 app.use(upload.single('image'));//parsing files
 app.use(express.static('images'));//specify where express should looks for static files
