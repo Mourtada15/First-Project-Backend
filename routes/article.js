@@ -1,6 +1,5 @@
 import express from "express"
 import * as articleController from "../controllers/articleControllers.js"
-
 const router = express.Router()
 
 // GET all articles
