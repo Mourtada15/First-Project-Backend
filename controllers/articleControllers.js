@@ -29,11 +29,12 @@ export const getArticle = async (req, res) => {
 
 // create new article
 export const createArticle = async (req, res) => {
-    const {title, body, image, date, adminId} = req.body
+    const {title, body, date} = req.body;
+    const image = req.file;
 
     // add doc to db
     try {
-        const article = await Article.create({title, body, image, date, admin: adminId})
+        const article = await Article.create({title:title, body:body, image:image.path, date:date, adminId: req.admin._id})
         res.status(200).json(article)
     } catch (error) {
         res.status(400).json({error: error.message})

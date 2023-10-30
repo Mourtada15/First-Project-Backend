@@ -20,7 +20,7 @@ const articleSchema = new Schema({
         type: Date,
         required:true
     },
-    admin: {
+    adminId: {
         type: Schema.Types.ObjectId, ref: 'Admin',required: true //foreign key
     }
 }, { timestamps: true })
