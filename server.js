@@ -1,22 +1,4 @@
 //imports
-<<<<<<< HEAD
-require('dotenv').config()
-const express =require ('express')
-const mongoose = require('mongoose')
-
-
-//Import routes
-const adminRoutes=require('./routes/admin')
-const articleRoute =require('./routes/article')
-const aboutUsRoute=require('./routes/aboutus')
-const milestoneRoute= require('./routes/milestone')
-const contactusRoute = require('./routes/contactus')
-//express app
-const app = express()
-
-//middleware
-app.use(express.json())//parsing data
-=======
 import  express  from 'express'
 import mongoose from 'mongoose'
 import bodyParser from "body-parser"
@@ -67,57 +49,31 @@ app.use(bodyParser.urlencoded({extended:false}))//parse form data
 app.use(express.json())//parsing json data
 app.use(multer({storage:storage,fileFilter:fileFilter}).single('image'));//parsing files
 app.use(express.static('images'));//specify where express should looks for static files
->>>>>>> remotes/origin/main
 
 app.use((req,res,next)=>{
     console.log(req.path, req.method)
     next()
 })
 
-<<<<<<< HEAD
-
-//trying get request
-// app.get('/',(req,res)=>{
-//     res.json({msg:'Welcome to the LebnenEle'})
-// })
-
-//routes
-app.use(process.env.ADMIN_PATH,adminRoutes)
-=======
 //routes
 app.use('/api/admin',adminRoute)
->>>>>>> remotes/origin/main
 app.use('/api/article',articleRoute)
 app.use('/api/about-us', aboutUsRoute)
 app.use('/api/milestone', milestoneRoute)
 app.use('/api/contact-us', contactusRoute)
-<<<<<<< HEAD
-=======
 app.use('/api/news', subscriberRoute);
 app.use('/api/lebneneEle', lebEleRoute);
 
 
->>>>>>> remotes/origin/main
 
 
 //connect to db
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{//listen for requests
     app.listen(process.env.PORT,()=>{
-<<<<<<< HEAD
-        console.log('Connected to db & listening on port', process.env.PORT)
-    })})
-.catch((error)=>{
-    console.log(error)
-    process.exit()
-})
-
-
-=======
         console.log(`Starting server at port ${process.env.PORT}`);
     })})
 .catch((error)=>{
     console.log(error);
     process.exit();
 })
->>>>>>> remotes/origin/main
