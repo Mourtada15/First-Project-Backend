@@ -15,6 +15,7 @@ import contactusRoute from "./routes/contactus.js"
 import milestoneRoute from "./routes/milestone.js"
 import subscriberRoute from './routes/subscriber.js'
 import lebEleRoute from './routes/lebneneEle.js'
+import Admin from "./models/adminModel.js"
 
 //express app
 const app = express()
