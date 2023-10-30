@@ -14,7 +14,6 @@ const adminSchema= new Schema({
         type: String,
         required: true
     },
-   
 },{timestamps:true})
 
 export default mongoose.model('Admin',adminSchema)
