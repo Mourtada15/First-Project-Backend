@@ -1,17 +1,16 @@
 
-
-const Article = require('../models/articleModel')
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
+import Article from "../models/articleModel.js"
 
 // get all articles
-const getArticles = async (req, res) => {
+export const getArticles = async (req, res) => {
     const articles = await Article.find({}).sort({createAt: -1})
     res.status(200).json(articles)
 }
 
 
 // get a single article
-const getArticle = async (req, res) => {
+export const getArticle = async (req, res) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -29,7 +28,7 @@ const getArticle = async (req, res) => {
 
 
 // create new article
-const createArticle = async (req, res) => {
+export const createArticle = async (req, res) => {
     const {title, body, image, date, adminId} = req.body
 
     // add doc to db
@@ -42,7 +41,7 @@ const createArticle = async (req, res) => {
 }
 
 // delete an article
-const deleteArticle = async (req, res) => {
+export const deleteArticle = async (req, res) => {
     const { id } = req.params
     
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -59,7 +58,7 @@ const deleteArticle = async (req, res) => {
 }
 
 // update an article
-const updateArticle = async (req, res) => {
+export const updateArticle = async (req, res) => {
     const { id } = req.params
     
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -75,15 +74,4 @@ const updateArticle = async (req, res) => {
     }
 
     res.status(200).json(article)
-}
-
-
-
-
-module.exports = {
-    getArticles,
-    getArticle,
-    createArticle,
-    deleteArticle,
-    updateArticle
 }

@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 const mongoose=require('mongoose')
 const Schema=mongoose.Schema
+=======
+import mongoose from "mongoose"
+const Schema=mongoose.Schema;
+>>>>>>> remotes/origin/main
 
 const aboutUsSchema = new Schema ({
     image: {
@@ -20,4 +25,8 @@ const aboutUsSchema = new Schema ({
     }
 },{timestamps: true})
 
+<<<<<<< HEAD
 module.exports=mongoose.model('AboutUs', aboutUsSchema)
+=======
+export default mongoose.model('AboutUs', aboutUsSchema);
+>>>>>>> remotes/origin/main

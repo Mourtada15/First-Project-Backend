@@ -1,15 +1,14 @@
-const Contactus = require('../models/contactusModel')
-const mongoose = require('mongoose')
-
+import Contactus from "../models/contactusModel.js"
+import mongoose from "mongoose"
 // get all messages
-const getMessages = async (req, res) => {
+export const getMessages = async (req, res) => {
     const messages = await Contactus.find({}).sort({createAt: -1})
     res.status(200).json(messages)
 }
 
 
 // get a single message
-const getMessage = async (req, res) => {
+export const getMessage = async (req, res) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -27,7 +26,7 @@ const getMessage = async (req, res) => {
 
 
 // send a message
-const sendMessage= async (req, res) => {
+export const sendMessage= async (req, res) => {
     const {email, name, message} = req.body
 
     // add doc to db
@@ -40,7 +39,7 @@ const sendMessage= async (req, res) => {
 }
 
 // delete an milestone
-const deleteMessage = async (req, res) => {
+export const deleteMessage = async (req, res) => {
     const { id } = req.params
     
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -54,12 +53,4 @@ const deleteMessage = async (req, res) => {
     }
 
     res.status(200).json(message)
-}
-
-module.exports = {
-    getMessage,
-   getMessages,
-   sendMessage,
-  deleteMessage
-
 }

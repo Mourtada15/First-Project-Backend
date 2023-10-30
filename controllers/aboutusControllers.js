@@ -1,8 +1,6 @@
-const AboutUs= require('../models/aboutusModel')
-const mongoose= require('mongoose')
+import AboutUs from "../models/aboutusModel.js"
 
-
-const getAboutUsContent= async(req,res)=>{
+export const getAboutUsContent= async(req,res)=>{
     const aboutUs = await AboutUs.findOne()
     if(!aboutUs){
         return res.status(404).json({error: "about us not found"})
@@ -12,7 +10,7 @@ const getAboutUsContent= async(req,res)=>{
 
 //git pull
 
-const updateAboutUsContent= async(req,res)=>{
+export const updateAboutUsContent= async(req,res)=>{
     const aboutUs=await AboutUs.findOneAndUpdate({}, req.body
     )
 
@@ -42,9 +40,3 @@ const updateAboutUsContent= async(req,res)=>{
 //         return res.status(500).json({ message: "Internal Server Error" });
 //     }
 // }
-
-
-module.exports = {
-    getAboutUsContent,
-    updateAboutUsContent
-}

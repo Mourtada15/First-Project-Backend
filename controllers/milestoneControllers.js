@@ -1,15 +1,14 @@
-const Milestone = require('../models/milestoneModel')
-const mongoose = require('mongoose')
-
+import Milestone from "../models/milestoneModel.js"
+import mongoose from "mongoose"
 // get all milestones
-const getMilestones = async (req, res) => {
+export const getMilestones = async (req, res) => {
     const milestones = await Milestone.find({}).sort({createAt: -1})
     res.status(200).json(milestones)
 }
 
 
 // get a single milestone
-const getMilestone = async (req, res) => {
+export const getMilestone = async (req, res) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -27,7 +26,7 @@ const getMilestone = async (req, res) => {
 
 
 // create new milestone
-const createMilestone = async (req, res) => {
+export const createMilestone = async (req, res) => {
     const {image, text} = req.body
 
     // add doc to db
@@ -40,7 +39,7 @@ const createMilestone = async (req, res) => {
 }
 
 // delete an milestone
-const deleteMilestone = async (req, res) => {
+export const deleteMilestone = async (req, res) => {
     const { id } = req.params
     
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -57,7 +56,7 @@ const deleteMilestone = async (req, res) => {
 }
 
 // update an milestone
-const updateMilestone = async (req, res) => {
+export const updateMilestone = async (req, res) => {
     const { id } = req.params
     
     if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -73,15 +72,4 @@ const updateMilestone = async (req, res) => {
     }
 
     res.status(200).json(milestone)
-}
-
-
-
-
-module.exports = {
-    getMilestones,
-    getMilestone,
-    createMilestone,
-    deleteMilestone,
-    updateMilestone
 }

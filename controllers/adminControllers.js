@@ -1,15 +1,13 @@
-const express= require('express')
-const Admin=require('../models/adminModel')
+import Admin from "../models/adminModel.js"
 //import bcrypt to hash the pass
-const bcrypt =require('bcrypt');
+import bcrypt from "bcrypt"
 
-
-const getAdmins= async (req,res)=>{
+export const getAdmins= async (req,res)=>{
     const admin= await Admin.find({})
     res.status(200).json(admin)
 }
 
-const registerAdmin=  async (req,res)=>{
+export const registerAdmin=  async (req,res)=>{
     const {username, email, password}=req.body
 
     //hash pass
@@ -26,8 +24,4 @@ const registerAdmin=  async (req,res)=>{
     } catch(error){
         res.status(500).json({error: error.message})
     }
-}
-
-module.exports={
-    getAdmins, registerAdmin
 }
