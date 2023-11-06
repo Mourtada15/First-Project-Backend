@@ -51,7 +51,7 @@ const upload= multer({storage:storage,fileFilter:fileFilter});
 app.use(bodyParser.urlencoded({extended:false}))//parse form data
 app.use(express.json())//parsing json data
 app.use(upload.single('image'));//parsing files
-app.use(express.static('images'));//specify where express should looks for static files
+app.use('/images',express.static('images'));//specify where express should looks for static files
 
 app.use((req,res,next)=>{
     console.log(req.path, req.method)
@@ -66,7 +66,10 @@ app.use(async (req,res,next)=>{
     req.admin=admin;
     next();
 })
-
+app.use((req,res,next)=>{
+    res.set('Access-Control-Allow-Origin', '*');
+  next();
+  })
 //routes
 app.use('/api/admin',adminRoute)
 app.use('/api/article',articleRoute)

@@ -4,10 +4,9 @@ import Article from "../models/articleModel.js"
 
 // get all articles
 export const getArticles = async (req, res) => {
-    const articles = await Article.find({}).sort({createAt: -1})
+    const articles = await Article.find();
     res.status(200).json(articles)
 }
-
 
 // get a single article
 export const getArticle = async (req, res) => {
