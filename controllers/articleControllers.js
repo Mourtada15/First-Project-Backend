@@ -16,13 +16,21 @@ export const getArticle = async (req, res) => {
         return res.status(404).json({error: 'No such article'})
     }
 
-    const article = await Article.findById(id)
+    const article = await Article.findById(id);
 
     if (!article) {
         return res.status(404).json({error: 'No such article'})
     }
 
     res.status(200).json(article)
+}
+
+export const getRecentArticles = async (req,res,next) =>{
+    const articles=await Article.find().sort({createdAt:'desc'}).limit(3);
+if(!articles){
+    return res.status(400).json({status:res.statusCode, message:'Articles not found!'});
+}
+res.status(200).json(articles);
 }
 
 
