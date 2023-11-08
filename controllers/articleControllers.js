@@ -8,7 +8,6 @@ export const getArticles = async (req, res) => {
     res.status(200).json(articles)
 }
 
-
 // get a single article
 export const getArticle = async (req, res) => {
     const { id } = req.params
@@ -61,13 +60,14 @@ export const deleteArticle = async (req, res) => {
 // update an article
 export const updateArticle = async (req, res) => {
     const { id } = req.params
+    const image=req.file
     
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error: 'No such article'})
     }
 
     const article = await Article.findOneAndUpdate({_id: id}, {
-        ...req.body
+        ...req.body, image: image.path
     })
 
     if (!article) {

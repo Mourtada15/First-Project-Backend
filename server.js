@@ -1,8 +1,8 @@
 //imports
 import  express  from 'express'
 import mongoose from 'mongoose'
-// import bodyParser from "body-parser"
-// import multer from 'multer'
+import bodyParser from "body-parser"
+import multer from 'multer'
 import dotenv from "dotenv"
 import path from "path"
 dotenv.config();
@@ -17,7 +17,9 @@ import subscriberRoute from './routes/subscriber.js'
 import lebEleRoute from './routes/lebneneEle.js'
 import teamRoutes from './routes/teamRoutes.js'
 
-import Admin from "./models/adminModel.js"
+import Admin from "./models/adminModel.js";
+
+import cors from "cors";
 
 //express app
 const app = express()
@@ -49,10 +51,11 @@ const upload= multer({storage:storage,fileFilter:fileFilter});
 
 
 //middleware
-// app.use(bodyParser.urlencoded({extended:false}))//parse form data
+app.use(bodyParser.urlencoded({extended:false}))//parse form data
 app.use(express.json())//parsing json data
+app.use(cors('*'));
 app.use(upload.single('image'));//parsing files
-app.use(express.static('images'));//specify where express should looks for static files
+app.use('/images',express.static('images'));//specify where express should looks for static files
 
 app.use((req,res,next)=>{
     console.log(req.path, req.method)
@@ -91,4 +94,3 @@ mongoose.connect(process.env.MONGO_URI)
         console.log(error)
         process.exit();
     })
-

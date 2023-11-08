@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const LebEleSchema = new mongoose.Schema({
+    
     story:{
         type:String,
         required:true
