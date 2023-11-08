@@ -27,11 +27,11 @@ export const getMilestone = async (req, res) => {
 
 // create new milestone
 export const createMilestone = async (req, res) => {
-    const {image, text} = req.body
+    const {image, title, text, date} = req.body
 
     // add doc to db
     try {
-        const milestone = await Milestone.create({image, text})
+        const milestone = await Milestone.create({image, title, text, date})
         res.status(200).json(milestone)
     } catch (error) {
         res.status(400).json({error: error.message})
