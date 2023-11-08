@@ -30,7 +30,7 @@ const storage = multer.diskStorage({
         cb(null,'images');
     },
     filename:(req,file,cb) =>{
-        cb(null, `${file.fieldname}-${Date.now()}`);
+        cb(null, `${file.originalname}`);
     }
 });
 
@@ -70,7 +70,10 @@ app.use(async (req,res,next)=>{
     req.admin=admin;
     next();
 })
-
+app.use((req,res,next)=>{
+    res.set('Access-Control-Allow-Origin', '*');
+  next();
+  })
 //routes
 app.use('/api/admin',adminRoute)
 app.use('/api/article',articleRoute)

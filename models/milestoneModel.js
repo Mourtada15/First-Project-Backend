@@ -6,8 +6,16 @@ const milestoneSchema = new Schema ({
         type: String,
         required: true
     },
-    text: {
+    title: {
         type: String,
+        required: true
+    },
+    body: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: Date,
         required: true
     }
 },{timestamps: true})
