@@ -1,5 +1,6 @@
 import Milestone from "../models/milestoneModel.js"
 import mongoose from "mongoose"
+
 // get all milestones
 export const getMilestones = async (req, res) => {
     const milestones = await Milestone.find({}).sort({createAt: -1})
@@ -27,11 +28,12 @@ export const getMilestone = async (req, res) => {
 
 // create new milestone
 export const createMilestone = async (req, res) => {
-    const {image, title, text, date} = req.body
+    const {title, body, date} = req.body
+    const image = req.file;
 
     // add doc to db
     try {
-        const milestone = await Milestone.create({image, title, text, date})
+        const milestone = await Milestone.create({title: title, body: body, date: date, image: image.path})
         res.status(200).json(milestone)
     } catch (error) {
         res.status(400).json({error: error.message})
