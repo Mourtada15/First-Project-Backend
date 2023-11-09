@@ -29,7 +29,8 @@ export const updateLebEle = async(req,res) => {
         return res.status(404).json({error: 'No content'})
     }
     lebEle.set(req.body);
-    req.file && lebEle.set({image:  req.file.path})
+    
+    req.file && lebEle.set({image: req.file.path})
 
     await lebEle.save();
     res.status(200).json(lebEle)
