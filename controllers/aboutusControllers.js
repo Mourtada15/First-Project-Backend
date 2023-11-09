@@ -5,7 +5,7 @@ export const getAboutUsContent= async(req,res)=>{
     if(!aboutUs){
         return res.status(404).json({error: "about us not found"})
     }
-    res.status(200).json(aboutUs)
+    res.status(200).json(aboutUs) 
 }
 
 
