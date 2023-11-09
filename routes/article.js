@@ -8,9 +8,6 @@ router.get('/', articleController.getArticles)
 // GET a single article
 router.get('/:id', articleController.getArticle)
 
-//GET top three recent articles
-router.get('/recent-articles',articleController.getRecentArticles);
-
 // POST a new article
 router.post('/', articleController.createArticle)
 
