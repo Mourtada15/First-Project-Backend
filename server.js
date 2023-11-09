@@ -4,7 +4,6 @@ import mongoose from 'mongoose'
 import bodyParser from "body-parser"
 import multer from 'multer'
 import dotenv from "dotenv"
-import path from "path"
 dotenv.config();
 
 //Import routes
@@ -59,7 +58,7 @@ app.use('/images',express.static('images'));//specify where express should looks
 
 app.use((req,res,next)=>{
     console.log(req.path, req.method)
-    next()
+    next();
 })
 //Admin middleware 
 app.use(async (req,res,next)=>{
