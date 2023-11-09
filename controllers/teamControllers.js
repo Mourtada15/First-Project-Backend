@@ -1,12 +1,13 @@
 
 import Team from '../models/teamModel.js'
-
 import mongoose from 'mongoose'
-
 
 // get all teamMembers
 export const getTeamMembers = async (req, res) => {
     const teamMembers = await Team.find({}).sort({createAt: -1})
+    if(!teamMembers || teamMembers.length === 0){
+        return res.status(404).json({error:"no teams"})
+    }
     res.status(200).json(teamMembers)
 }
 
@@ -41,11 +42,12 @@ export const getTeamMember = async (req, res) => {
 
 // create new teamMember
 export const createTeamMember = async (req, res) => {
-    const {image, name, title} = req.body
+    const {name, title} = req.body
+    const image=req.file;
 
     // add doc to db
     try {
-        const teamMember = await Team.create({image, name, title})
+        const teamMember = await Team.create({image:image.path, name:name, title:title})
         res.status(200).json(teamMember)
     } catch (error) {
         res.status(400).json({error: error.message})

@@ -15,7 +15,7 @@ export const getMilestone = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error: 'No such Milestone'})
     }
-
+    
     const milestone = await Milestone.findById(id)
 
     if (!milestone) {

@@ -1,21 +1,22 @@
-import express from 'express'
+import express from 'express';
 
-import * as teamController from '../controllers/teamController.js'
+import * as teamsController from "../controllers/teamControllers.js";
+
 const router = express.Router()
 
 // GET all teamMembers
-router.get('/', teamController.getTeamMembers)
+router.get('/', teamsController.getTeamMembers)
 
 // GET a teamMember
-router.get('/:id', teamController.getTeamMember)
+router.get('/:id', teamsController.getTeamMember)
 
 // Create a new teamMember
-router.post('/', teamController.createTeamMember)
+router.post('/', teamsController.createTeamMember)
 
 // DELETE a teamMember
-router.delete('/:id', teamController.deleteTeamMember)
+router.delete('/:id', teamsController.deleteTeamMember)
 
 // UPDATE a teamMember
-router.patch('/:id', teamController.updateTeamMember)
+router.patch('/:id', teamsController.updateTeamMember)
 
 export default router
