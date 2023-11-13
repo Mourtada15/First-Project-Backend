@@ -64,19 +64,19 @@ export const deleteArticle = async (req, res) => {
 // update an article
 export const updateArticle = async (req, res) => {
     const { id } = req.params
-    const image=req.file
+    const image=req.file;
+
     
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({error: 'No such article'})
     }
-
-    const article = await Article.findOneAndUpdate({_id: id}, {
-        ...req.body, image: image.path
-    })
-
-    if (!article) {
-        return res.status(404).json({error: 'No such article'})
+    if(image || req.body){
+        const article = await Article.findOneAndUpdate({_id: id}, {
+            ...req.body, image: image.path
+        })
+    return res.status(200).json(article)
     }
+    res.status(405).json({status:res.statusCode, message:'Something went wrong'});
+    
 
-    res.status(200).json(article)
 }
