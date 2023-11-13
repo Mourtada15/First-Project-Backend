@@ -7,7 +7,7 @@ export const addSubscriber = async(req,res,next) =>{
         email:email
     });
     await sub.save();
-    res.status(200).json({message:"Subscrbied successfully!"})
+    res.status(200).json({message:"Subscrbied successfully!"});
 
 
    }catch(err){
